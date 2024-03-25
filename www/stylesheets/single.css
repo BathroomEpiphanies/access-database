@@ -1,0 +1,61 @@
+.description {
+    width: auto;
+//    padding: 20px 0px 20px 0px;
+    margin: 0px 0px 0px 20px;
+    font-size: larger;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.data_table {
+    width: auto;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 20px 0px 0px;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.data_type {
+    width: 18%;
+    padding: 2px 8px 2px 8px;
+    height: 1.9em;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.data_data {
+    width: auto;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.data_box {
+    min-width: 250px;
+    background: none;
+    border-width: 1px;
+}
+
+.comment_table {
+    width: 90%;
+    margin: 20px auto 20px auto;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.comment_time {
+    width: 18%;
+    text-align: right;
+    padding: 2px 8px 2px 8px;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.comment_text {
+ //   width: auto;
+    width: 85%;
+    border: dashed rgba(255, 0, 0, 0.1) 1px;
+}
+
+.comment_box {
+    width: 99%;
+    margin:  2px 2px 2px 2px;
+    border-width: 1px;
+    background: none;
+}
+
+td {
+}

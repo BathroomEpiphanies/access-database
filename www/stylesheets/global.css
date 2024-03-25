@@ -1,0 +1,60 @@
+a {
+    text-decoration: none;
+}
+
+html {
+    max-width: 480px;
+    min-width: 768px;
+    background: #FFFFFF;
+    font-family: monospace;
+    margin: 0 auto 0 auto ;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top; 
+    background-size: 1024px;
+
+    border: dashed rgba(0, 255, 0, 0.1) 1px;
+}
+
+body {
+    min-height: 100%;
+    text-align: center;
+    border: dashed rgba(0, 0, 255, 0.1) 1px;
+}
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    border: dashed rgba(2550, 0, 0, 0.1) 1px;
+}
+
+.header a {
+    padding-right: 10px;
+    color: black;
+}
+
+th {
+    text-align: left;
+    font-weight: bold;
+    font-size: medium;
+}
+
+td {
+    text-align: left;
+    font-size: medium;
+}
+
+input {
+    font-weight: bold;
+    padding: 0px 0px 0px 0px;
+    margin: -2px -2px -2px -2px;
+}
+
+.button {
+    font-size: xx-small;
+//    font-size: 70%;
+}

@@ -1,0 +1,66 @@
+<?php include("view/header.php.html") ?>
+    
+    <table style="margin: auto;">
+      <thead>
+        <tr>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+          <th style="min-width:  80px; max-width:  80px;"></th>
+          <th style="min-width:  80px; max-width:  80px;"></th>
+          <th style="min-width: 160px; max-width: 160px;"></th>
+          <th style="min-width: 160px; max-width: 160px;"></th>
+          <th style="min-width:  80px; max-width:  80px;"></th>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td><?= $tag['raw'] ?></td>
+          <td><?= $tag['rfid'] ?></td>
+          <td><?= $tag['tag_name'] ?></td>
+          <td><?= $tag['last_name'] ?></td>
+          <td><?= $tag['first_name'] ?></td>
+          <td><?= $tag['class'] ?></td>
+          <td><form action="/?del_tag&tag_id=<?= $tag['tag_id']?>" method="POST" style="text-align: right;"><input class="button" type="submit" value="Delete tag" /></form></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+    
+    <!-- current groups -->
+    <table style="margin: auto;">
+      <thead>
+        <tr>
+          <th style="min-width: 680px; max-width: 680px;"></th>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td colspan="100%"><b style="text-align:left;">Taggens grupper:</b></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+<?php foreach ($tag_groups as $group) { ?>
+        <tr>
+          <td><?= $group['name'] ?></td>
+          <td><form action="/?remove_tag_from_group&tag_id=<?= $_REQUEST['tag_id'] ?>&group_id=<?= $group['group_id'] ?>" method="POST"><input style="text-align: right;" class="button" type="submit" value="Remove group"></form></td>
+        </tr>
+<?php } ?>
+        <tr>
+          <td>
+            <form action="/?join_tag_to_group&tag_id=<?= $_REQUEST['tag_id'] ?>" method="POST">
+              <select class="button" name="group_id" onchange="this.form.submit()"><option value="group_id" selected="selected">Add group</option>
+<?php foreach ($groups as $group) { ?>
+                <option style="font-size: medium;" value="<?= $group['group_id'] ?>"><?= $group['name'] ?></option>
+<?php } ?>
+              </select>
+            </form>
+          </td>
+          <td></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+    </table>
+    
+<?php include("view/footer.php.html") ?>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <title><?= $title ?></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/global.css" />
+    <link rel="icon" href="favicon.svg" />
+  </head>
+
+  <body>
+
+    <div class="header">
+      <a href="/?users"  tabindex="-1">users</a>
+      <a href="/?tags"   tabindex="-1">tags</a>
+      <a href="/?doors"  tabindex="-1">doors</a>
+      <a href="/?groups" tabindex="-1">groups</a>
+      <a href="/?logout" tabindex="-1">logout</a>
+      <br/>
+      <p style="font-size: small;"><?php printf(date('Y-m-d H:i')) ?></p>
+    </div>

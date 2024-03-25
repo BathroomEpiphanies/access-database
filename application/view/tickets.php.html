@@ -1,0 +1,32 @@
+<?php include("view/header.php.html") ?>
+    
+    <table style="margin: auto;">
+      <thead>
+        <tr>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+          <th style="min-width: 180px; max-width: 180px;"></th>
+          <th style="min-width: 160px; max-width: 160px;"></th>
+          <th style="min-width: 160px; max-width: 160px;"></th>
+          <th style="min-width:  80px; max-width:  80px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td colspan="100%"><b style="text-align:left;">Alla biljetter:</b></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+<?php foreach ($tickets as $ticket) { ?>
+        <tr>
+          <td><?= $ticket['group_name'] ?></td>
+          <td><?= $ticket['door_name'] ?></td>
+          <td><?= $ticket['begin'] ?></td>
+          <td><?= $ticket['end'] ?></td>
+          <td><form action="/?del_ticket&ticket_id=<?= $ticket['ticket_id'] ?>&tickets=header" method="POST" style="text-align: right;"><input class="button" type="submit" value="Delete ticket" /></form></td>
+        </tr>
+<?php } ?>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+    
+<?php include("view/footer.php.html") ?>

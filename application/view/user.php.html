@@ -1,0 +1,80 @@
+<?php include("view/header.php.html") ?>
+    
+    <table style="margin: auto;">
+      <thead>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <th style="min-width: 680px; max-width: 680px;"><b style="text-align:left;">Användare: <?= $user['first_name'].' '.$user['last_name'].', '.$user['class'] ?></b></th>
+          <th style="min-width: 120px; max-width: 120px;"><form action="/?del_user&user_id=<?= $user['user_id']?>" method="POST" style="text-align: right;"><input class="button" type="submit" value="Delete user" /></form></th>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </thead>
+    </table>
+    
+    <br/>
+    
+    <!-- current tags -->
+    <table style="margin: auto;">
+      <thead>
+        <tr>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+          <th style="min-width:  80px; max-width:  80px;"></th>
+          <th style="min-width:  80px; max-width:  80px;"></th>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td colspan="100%"><b style="text-align:left;">Användarens taggar:</b></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+<?php foreach ($tags as $tag) { ?>
+        <tr>
+          <td><a href="/?tag&tag_id=<?= $tag['tag_id'] ?>"><?= $tag['raw'] ?></a></td>
+          <td><a href="/?tag&tag_id=<?= $tag['tag_id'] ?>"><?= $tag['rfid'] ?></a></td>
+          <td><?= $tag['tag_name'] ?></td>
+          <td><form action="/?del_tag&tag_id=<?= $tag['tag_id']?>&user_id=<?= $user['user_id']?>" method="POST" style="text-align: right;"><input class="button" type="submit" value="Delete tag" /></form></td>
+        </tr>
+<?php } ?>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+
+    <!-- current groups -->
+    <table style="margin: auto;">
+      <thead>
+        <tr>
+          <th style="min-width: 680px; max-width: 680px;"></th>
+          <th style="min-width: 120px; max-width: 120px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td colspan="100%"><b style="text-align:left;">Användarens grupper:</b></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+<?php foreach ($user_groups as $group) { ?>
+        <tr>
+          <td><?= $group['name'] ?></td>
+          <td><form action="/?remove_user_from_group&user_id=<?= $_REQUEST['user_id'] ?>&group_id=<?= $group['group_id'] ?>" method="POST"><input style="text-align: right;" class="button" type="submit" value="Remove group"></form></td>
+        </tr>
+<?php } ?>
+        <tr>
+          <td>
+            <form action="/?join_user_to_group&user_id=<?= $_REQUEST['user_id'] ?>" method="POST">
+              <select class="button" name="group_id" onchange="this.form.submit()"><option value="group_id" selected="selected">Add group</option>
+<?php foreach ($groups as $group) { ?>
+                <option style="font-size: medium;" value="<?= $group['group_id'] ?>"><?= $group['name'] ?></option>
+<?php } ?>
+              </select>
+            </form>
+          </td>
+          <td></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+    </table>
+    
+<?php include("view/footer.php.html") ?>

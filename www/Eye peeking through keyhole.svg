@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000">
+<title>Eye peeking through keyhole</title>
+<style type="text/css">
+#eye {
+  fill: none;
+  stroke: black;
+  stroke-width: 50;
+}
+</style>
+
+<rect id="background" height="1000" width="1000" fill="black"/> 
+
+<g id="keyhole">
+  <circle cx="500" cy="280" r="210" fill="white"/>
+  <path fill="white" d="m390,460 h220 l100,300 a80,80 0 0,1 -90,90 h-240 a80,80 0 0,1 -90,-90  z"/>
+</g>
+
+<g id="eye">
+  <path d="M325,250 q175,-175 350,0 q-175,175 -350,0 z"/>
+  <circle cx="500" cy="215" r="50"/>
+</g>
+<script xmlns="" id="bw-fido2-page-script"/></svg>

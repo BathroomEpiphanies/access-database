@@ -1,0 +1,21 @@
+<?php include("view/header.php.html") ?>
+    
+    <table style="margin: auto;">
+      <thead>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <th style="min-width: 800px; max-width: 800px;"><b style="text-align:left;">Dörrens namn:</b></th>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </thead>
+      <tbody>
+<?php foreach ($doors as $door) { ?>
+        <tr>
+          <td> <a href="/?door&door_id=<?= $door['door_id'] ?>"><?= $door['name'] ?> </a></td>
+        </tr>
+<?php } ?>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+    
+<?php include("view/footer.php.html") ?>

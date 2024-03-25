@@ -1,0 +1,28 @@
+<?php include("view/header.php.html") ?>
+    
+    <table style="margin: auto;">
+      <thead>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <th style="min-width:  80px; max-width:  80px;">klass</th>
+          <th style="min-width: 160px; max-width: 160px;">efternamn</th>
+          <th style="min-width: 160px; max-width: 160px;">förnamn</th>
+          <th style="min-width: 400px; max-width: 400px;"></th>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </thead>
+      <tbody>
+<?php foreach ($users as $user) { ?>
+        <tr>
+          <td><?= $user['class'] ?></td>
+          <td><a href="/?user&user_id=<?= $user['user_id'] ?>"><?= $user['last_name'] ?></a></td>
+          <td><a href="/?user&user_id=<?= $user['user_id'] ?>"><?= $user['first_name'] ?></a></td>
+          <td><?= $user['groups'] ?></td>
+          <td></td>
+        </tr>
+<?php } ?>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+    
+<?php include("view/footer.php.html") ?>
