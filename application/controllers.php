@@ -18,6 +18,11 @@ function control_users() {
     $title = 'Access system';
     $stylesheet = 'users';
     $users = $door_db->get_all_users();
+    foreach($users as &$user) {
+        $tmp = explode(',', $user['groups']);
+        sort($tmp);
+        $user['groups'] = implode(',', $tmp);
+    }; unset($user); //"feature" in php breaks subsequent uses of $user if not done
     include 'view/users.php.html';
 }
 
@@ -36,6 +41,11 @@ function control_tags() {
     $door_db = DoorDatabase::get_instance();
     $title = 'Access system';
     $tags = $door_db->get_tags();
+    foreach($tags as &$tag) {
+        $tmp = explode(',', $tag['groups']);
+        sort($tmp);
+        $tag['groups'] = implode(',', $tmp);
+    }; unset($tag); //"feature" in php breaks subsequent uses of $tag if not done
     include 'view/tags.php.html';
 }
 
