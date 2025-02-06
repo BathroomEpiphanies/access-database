@@ -70,6 +70,23 @@ function control_door() {
     include 'view/door.php.html';
 }
 
+function control_systems() {
+    $door_db = DoorDatabase::get_instance();
+    $title = 'Access system';
+    $stylesheet = 'systems';
+    $systems = $door_db->get_all_systems();
+    include 'view/systems.php.html';
+}
+
+function control_system() {
+    $door_db = DoorDatabase::get_instance();
+    $title = 'Access system';
+    $stylesheet = 'systems';
+    $system = $door_db->get_system($_REQUEST['system_id']);
+    $doors = $door_db->get_doors_per_system($_REQUEST['system_id']);
+    include 'view/system.php.html';
+}
+
 function control_groups() {
     $door_db = DoorDatabase::get_instance();
     $title = 'Access system';

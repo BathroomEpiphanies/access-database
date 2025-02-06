@@ -1,0 +1,52 @@
+<?php include("view/header.php.html") ?>
+    
+    <table style="margin: auto;">
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td style="min-width: 100px; max-width: 100px;"><b style="text-align:left;">Namn:</b></td>
+          <td style="min-width: 640px; max-width: 640px;"><?= $system['name'] ?></td>
+        </tr>
+        <tr>
+          <td><b style="text-align:left;">SSH-port:</b></td>
+          <td><?= $system['ssh_port'] ?></td>
+        </tr>
+        <tr>
+          <td><b style="text-align:left;">Hårdvara:</b></td>
+          <td><?= $system['hardware'] ?></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+    
+    <br/>
+    
+    <!-- current tickets -->
+    <table style="margin: auto;">
+      <thead>
+        <tr>
+          <th style="min-width: 300px; max-width: 300px;"></th>
+          <th style="min-width: 200px; max-width: 200px;"></th>
+          <th style="min-width: 240px; max-width: 240px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+        <tr>
+          <td><b style="text-align:left;">Systemets dörrar:</b></td>
+          <td><b style="text-align:left;">Läsar-typ:</b></td>
+          <td><b style="text-align:left;">Hårdvaru-port:</b></td>
+        </tr>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+<?php foreach ($doors as $door) { ?>
+        <tr>
+          <td><?= $door['door_name'] ?></td>
+          <td><?= $door['reader_type'] ?></td>
+          <td><?= $door['hardware_port'] ?></td>
+        </tr>
+<?php } ?>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+      </tbody>
+    </table>
+    
+<?php include("view/footer.php.html") ?>

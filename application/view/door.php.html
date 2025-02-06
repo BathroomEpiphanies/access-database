@@ -1,13 +1,18 @@
 <?php include("view/header.php.html") ?>
     
     <table style="margin: auto;">
-      <thead>
+      <tbody>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
         <tr>
-          <th style="min-width: 660px; max-width: 660px;"><b style="text-align:left;">Dörrens namn: <?= $door['name'] ?></b></th>
+          <td style="min-width: 100px; max-width: 100px;"><b style="text-align:left;">Namn:</b></td>
+          <td style="min-width: 640px; max-width: 640px;"><?= $door['name'] ?></td>
+        </tr>
+        <tr>
+          <td><b style="text-align:left;">Typ:</b></td>
+          <td><?= $door['reader_type'] ?></td>
         </tr>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
-      </thead>
+      </tbody>
     </table>
     
     <br/>
@@ -16,10 +21,10 @@
     <table style="margin: auto;">
       <thead>
         <tr>
-          <th style="min-width: 120px; max-width: 120px;"></th>
+          <th style="min-width: 140px; max-width: 140px;"></th>
           <th style="min-width: 220px; max-width: 220px;"></th>
           <th style="min-width: 220px; max-width: 220px;"></th>
-          <th style="min-width:  60px; max-width:  60px;"></th>
+          <th style="min-width:  40px; max-width:  40px;"></th>
           <th style="min-width: 120px; max-width: 120px;"></th>
         </tr>
       </thead>
@@ -38,6 +43,7 @@
           <td><form action="/?del_ticket&ticket_id=<?= $ticket['ticket_id'] ?>&door_id=<?= $_REQUEST['door_id'] ?>" method="POST" style="text-align: right;"><input class="button" type="submit" value="Delete ticket" /></form></td>
         </tr>
 <?php } ?>
+        <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
       </tbody>
     </table>
     

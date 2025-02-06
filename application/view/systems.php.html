@@ -4,16 +4,16 @@
       <thead>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
         <tr>
-          <th style="min-width: 400px; max-width: 400px;"><b style="text-align:left;">Dörrens namn:</b></th>
-          <th style="min-width: 400px; max-width: 400px;"><b style="text-align:left;">Läsar-typ:</b></th>
+          <th style="min-width: 400px; max-width: 400px;"><b style="text-align:left;">Systemets namn:</b></th>
+          <th style="min-width: 400px; max-width: 400px;"><b style="text-align:left;">Hårdvara:</b></th>
         </tr>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
       </thead>
       <tbody>
-<?php foreach ($doors as $door) { ?>
+<?php foreach ($systems as $system) { ?>
         <tr>
-          <td> <a href="/?door&door_id=<?= $door['door_id'] ?>"><?= $door['name'] ?> </a></td>
-          <td> <a href="/?door&door_id=<?= $door['door_id'] ?>"><?= $door['reader_type'] ?> </a></td>
+          <td> <a href="/?system&system_id=<?= $system['system_id'] ?>"><?= $system['name'] ?> </a></td>
+          <td> <a href="/?system&system_id=<?= $system['system_id'] ?>"><?= $system['hardware'] ?> </a></td>
         </tr>
 <?php } ?>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>

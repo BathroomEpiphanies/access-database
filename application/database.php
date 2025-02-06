@@ -47,7 +47,17 @@ class DoorDatabase {
             $this->db->query(
                 'CREATE TABLE Doors (
                      door_id     INTEGER PRIMARY KEY,
-                     name        TEXT UNIQUE
+                     name        TEXT UNIQUE,
+                     reader_type TEXT
+                 )'
+            );
+            
+            $this->db->query(
+                'CREATE TABLE Systems (
+                     system_id   INTEGER PRIMARY KEY,
+                     name        TEXT UNIQUE,
+                     ssh_port    TEXT UNIQUE,
+                     hardware    TEXT
                  )'
             );
             
@@ -68,6 +78,17 @@ class DoorDatabase {
                      UNIQUE(user_id,group_id),
                      FOREIGN KEY (user_id)  REFERENCES Users(user_id)   ON UPDATE CASCADE ON DELETE CASCADE,
                      FOREIGN KEY (group_id) REFERENCES Groups(group_id) ON UPDATE CASCADE ON DELETE CASCADE
+                 )'
+            );
+            
+            $this->db->query(
+                'CREATE TABLE rSystemDoor (
+                     system_id     INTEGER,
+                     door_id       INTEGER,
+                     hardware_port INTEGER,
+                     UNIQUE(system_id,door_id,port),
+                     FOREIGN KEY   (system_id) REFERENCES Systems(system_id) ON UPDATE CASCADE ON DELETE CASCADE,
+                     FOREIGN KEY   (door_id)   REFERENCES Doors(door_id) ON UPDATE CASCADE ON DELETE CASCADE
                  )'
             );
             
@@ -263,6 +284,23 @@ class DoorDatabase {
     }
     
     
+    public function get_all_systems() {
+        $statement = $this->db->prepare(
+            'SELECT * FROM Systems ORDER BY name'
+        );
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+    
+    public function get_system($system_id) {
+        $statement = $this->db->prepare(
+            'SELECT * FROM Systems WHERE system_id=?'
+        );
+        $statement->execute(array($system_id));
+        return $statement->fetch();
+    }
+    
+    
     public function get_all_groups() {
         $statement = $this->db->prepare(
             'SELECT * FROM Groups ORDER BY name'
@@ -316,6 +354,26 @@ class DoorDatabase {
                  t.begin'
         );
         $statement->execute();
+        return $statement->fetchAll();
+    }
+    
+    public function get_doors_per_system($system_id) {
+        $statement = $this->db->prepare(
+            'SELECT
+                 s.name AS system_name,
+                 d.name AS door_name,
+                 d.reader_type AS reader_type,
+                 rsd.hardware_port AS hardware_port
+             FROM
+                 Systems s INNER JOIN
+                 rSystemDoor rsd ON s.system_id=rsd.system_id INNER JOIN
+                 Doors d ON d.door_id=rsd.door_id
+             WHERE
+                 s.system_id=?
+             ORDER BY
+                 d.name'
+        );
+        $statement->execute(array($system_id));
         return $statement->fetchAll();
     }
     

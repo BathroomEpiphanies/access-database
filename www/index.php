@@ -19,6 +19,8 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
     if(isset($_REQUEST['tags']))                   { control_tags();                   exit; }
     if(isset($_REQUEST['doors']))                  { control_doors();                  exit; }
     if(isset($_REQUEST['door']))                   { control_door();                   exit; }
+    if(isset($_REQUEST['systems']))                { control_systems();                exit; }
+    if(isset($_REQUEST['system']))                 { control_system();                 exit; }
     if(isset($_REQUEST['groups']))                 { control_groups();                 exit; }
     if(isset($_REQUEST['group']))                  { control_group();                  exit; }
     if(isset($_REQUEST['join_user_to_group']))     { control_join_user_to_group();     exit; }
