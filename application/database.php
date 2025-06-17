@@ -132,7 +132,7 @@ class DoorDatabase {
             $insert_user_tag->execute(array($data['user_id'],$data['user_id']));
         }
         $this->db->query('END TRANSACTION');
-        $this->db->query('DELETE FROM Users WHERE user_id<1000000 AND user_id NOT IN ('.implode(',',$active_users).')');
+        $this->db->query('DELETE FROM Users WHERE user_id>0 AND user_id<1000000 AND user_id NOT IN ('.implode(',',$active_users).')');
     }
     
     
