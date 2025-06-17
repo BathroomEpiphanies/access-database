@@ -341,6 +341,7 @@ class DoorDatabase {
                  t.ticket_id AS ticket_id,
                  t.begin AS begin,
                  t.end AS end,
+                 t.require_pin AS require_pin,
                  g.name AS group_name,
                  d.name AS door_name
              FROM

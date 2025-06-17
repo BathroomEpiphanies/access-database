@@ -7,6 +7,7 @@
           <th style="min-width: 180px; max-width: 180px;"></th>
           <th style="min-width: 160px; max-width: 160px;"></th>
           <th style="min-width: 160px; max-width: 160px;"></th>
+          <th style="min-width:  40px; max-width:  40px;"></th>
           <th style="min-width:  80px; max-width:  80px;"></th>
         </tr>
       </thead>
@@ -22,6 +23,7 @@
           <td><?= $ticket['door_name'] ?></td>
           <td><?= $ticket['begin'] ?></td>
           <td><?= $ticket['end'] ?></td>
+          <td><?= $ticket['require_pin'] ?></td>
           <td><form action="/?del_ticket&ticket_id=<?= $ticket['ticket_id'] ?>&tickets=header" method="POST" style="text-align: right;"><input class="button" type="submit" value="Delete ticket" /></form></td>
         </tr>
 <?php } ?>
