@@ -6,6 +6,7 @@ function control_tickets() {
     $title = 'Access system';
     $stylesheet = 'tickets';
     $tickets = $door_db->get_all_tickets();
+    date_default_timezone_set("Europe/Stockholm");
     foreach($tickets as &$ticket) {
         $ticket['begin'] = strftime("%a %Y-%m-%d %H:%M",$ticket['begin']);
         $ticket['end'] = strftime("%a %Y-%m-%d %H:%M",$ticket['end']);
@@ -63,6 +64,7 @@ function control_door() {
     $stylesheet = 'doors';
     $door = $door_db->get_door($_REQUEST['door_id']);
     $tickets = $door_db->get_tickets_per_door($_REQUEST['door_id']);
+    date_default_timezone_set("Europe/Stockholm");
     foreach($tickets as &$ticket) {
         $ticket['begin'] = strftime("%a %Y-%m-%d %H:%M",$ticket['begin']);
         $ticket['end'] = strftime("%a %Y-%m-%d %H:%M",$ticket['end']);
@@ -102,6 +104,7 @@ function control_group() {
     $group = $door_db->get_group($_REQUEST['group_id']);
     $tickets = $door_db->get_tickets_per_group($_REQUEST['group_id']);
     $users = $door_db->get_users_per_group($_REQUEST['group_id']);
+    date_default_timezone_set("Europe/Stockholm");
     foreach($tickets as &$ticket) {
         $ticket['begin'] = strftime("%a %Y-%m-%d %H:%M",$ticket['begin']);
         $ticket['end'] = strftime("%a %Y-%m-%d %H:%M",$ticket['end']);
