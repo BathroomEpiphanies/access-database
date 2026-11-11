@@ -65,9 +65,7 @@ class DoorDatabase {
                 'CREATE TABLE rUserTag (
                      user_id     INTEGER,
                      tag_id      INTEGER,
-                     UNIQUE(user_id,tag_id),
-                     FOREIGN KEY (user_id)  REFERENCES Users(user_id)   ON UPDATE CASCADE ON DELETE CASCADE,
-                     FOREIGN KEY (tag_id)   REFERENCES Tags(tag_id)     ON UPDATE CASCADE ON DELETE CASCADE
+                     UNIQUE(user_id,tag_id)
                  )'
             );
             
@@ -75,9 +73,7 @@ class DoorDatabase {
                 'CREATE TABLE rUserGroup (
                      user_id     INTEGER,
                      group_id    INTEGER,
-                     UNIQUE(user_id,group_id),
-                     FOREIGN KEY (user_id)  REFERENCES Users(user_id)   ON UPDATE CASCADE ON DELETE CASCADE,
-                     FOREIGN KEY (group_id) REFERENCES Groups(group_id) ON UPDATE CASCADE ON DELETE CASCADE
+                     UNIQUE(user_id,group_id)
                  )'
             );
             
@@ -86,9 +82,7 @@ class DoorDatabase {
                      system_id     INTEGER,
                      door_id       INTEGER,
                      hardware_port INTEGER,
-                     UNIQUE(system_id,door_id,port),
-                     FOREIGN KEY   (system_id) REFERENCES Systems(system_id) ON UPDATE CASCADE ON DELETE CASCADE,
-                     FOREIGN KEY   (door_id)   REFERENCES Doors(door_id) ON UPDATE CASCADE ON DELETE CASCADE
+                     UNIQUE(system_id,door_id,port)
                  )'
             );
             
@@ -100,8 +94,6 @@ class DoorDatabase {
                      begin       INTEGER NOT NULL DEFAULT 0,
                      end         INTEGER NOT NULL DEFAULT 0,
                      require_pin TEXT NOT NULL DEFAULT "true",
-                     FOREIGN KEY (door_id)  REFERENCES Doors(door_id)   ON UPDATE CASCADE ON DELETE CASCADE,
-                     FOREIGN KEY (group_id) REFERENCES Groups(group_id) ON UPDATE CASCADE ON DELETE CASCADE,
                      CHECK(require_pin IN ("true","false"))
                  )'
             );
@@ -113,26 +105,32 @@ class DoorDatabase {
     }
     
     
-    public function update_database($imported_data) {
-        $insert_user = $this->db->prepare('INSERT OR REPLACE INTO Users (user_id,first_name,last_name,class) VALUES (?,?,?,?)');
-        $insert_tag = $this->db->prepare('INSERT OR REPLACE INTO Tags (tag_id,name,raw,rfid,pin) VALUES (?,?,?,?,?)');
-        $insert_user_tag = $this->db->prepare('INSERT OR REPLACE INTO rUserTag (user_id,tag_id) VALUES (?,?)');
-        
-        print(count($imported_data)); print('<br/>');
-        $active_users = array();
+    public function update_database($groups, $users, $users_groups, $users_tags) {
         $this->db->query('BEGIN TRANSACTION');
         $this->db->query('PRAGMA foreign_keys = ON');
-        $this->db->query('DELETE FROM Tags WHERE name="_imported"');
+        $this->db->query('DELETE FROM Groups');
+        $this->db->query('DELETE FROM Users');
+        $this->db->query('DELETE FROM Tags');
+        $this->db->query('DELETE FROM rUserGroup');
+        $this->db->query('DELETE FROM rUserTag');
         
-        foreach($imported_data AS $data) {
-            //print_r($data);
-            array_push($active_users, $data['user_id']);
-            $insert_user->execute(array($data['user_id'],$data['first_name'],$data['last_name'],$data['class']));
-            $insert_tag->execute(array($data['user_id'],"_imported",$data['raw'],$data['rfid'],$data['pin']));
-            $insert_user_tag->execute(array($data['user_id'],$data['user_id']));
-        }
+        $statement = $this->db->prepare('INSERT INTO Groups (group_id,name) VALUES (?,?)');
+        foreach ($groups as $row)
+            $statement->execute(array($row['id'],$row['name']));
+        $statement = $this->db->prepare('INSERT INTO Users (user_id,first_name,last_name,class) VALUES (?,?,?,?)');
+        foreach ($users as $row)
+            $statement->execute(array($row['id'],$row['first_name'],$row['last_name'],$row['class']));
+        $statement = $this->db->prepare('INSERT INTO rUserGroup (user_id,group_id) VALUES (?,?)');
+        foreach ($users_groups as $row)
+            $statement->execute(array($row['user_id'],$row['group_id']));
+        $statement = $this->db->prepare('INSERT INTO Tags (tag_id,rfid,pin) VALUES (?,?,?)');
+        foreach ($users_tags as $row)
+            $statement->execute(array($row['tag_id'],$row['rfid'],$row['pin']));
+        $statement = $this->db->prepare('INSERT INTO rUserTag (user_id,tag_id) VALUES (?,?)');
+        foreach ($users_tags as $row)
+            $statement->execute(array($row['user_id'],$row['tag_id']));
+        
         $this->db->query('END TRANSACTION');
-        $this->db->query('DELETE FROM Users WHERE user_id>0 AND user_id<1000000 AND user_id NOT IN ('.implode(',',$active_users).')');
     }
     
     
