@@ -4,8 +4,9 @@
       <thead>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
         <tr>
-          <th style="min-width: 400px; max-width: 400px;"><b style="text-align:left;">Systemets namn:</b></th>
-          <th style="min-width: 400px; max-width: 400px;"><b style="text-align:left;">Hårdvara:</b></th>
+          <th style="min-width: 240px; max-width: 240px;"><b style="text-align:left;">Systemets namn:</b></th>
+          <th style="min-width: 240px; max-width: 240px;"><b style="text-align:left;">Hårdvara:</b></th>
+          <th style="min-width: 240px; max-width: 240px;"><b style="text-align:left;">Aktiv:</b></th>
         </tr>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
       </thead>
@@ -14,6 +15,7 @@
         <tr>
           <td> <a href="/?system&system_id=<?= $system['system_id'] ?>"><?= $system['name'] ?> </a></td>
           <td> <a href="/?system&system_id=<?= $system['system_id'] ?>"><?= $system['hardware'] ?> </a></td>
+          <td> <a href="/?system&system_id=<?= $system['system_id'] ?>"><?= $system['active'] ?> </a></td>
         </tr>
 <?php } ?>
         <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>

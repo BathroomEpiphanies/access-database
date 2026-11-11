@@ -57,7 +57,8 @@ class DoorDatabase {
                      system_id   INTEGER PRIMARY KEY,
                      name        TEXT UNIQUE,
                      ssh_port    TEXT UNIQUE,
-                     hardware    TEXT
+                     hardware    TEXT,
+                     active      TEXT NOT NULL DEFAULT "true" CHECK(require_pin IN ("true","false"))
                  )'
             );
             
@@ -93,8 +94,7 @@ class DoorDatabase {
                      group_id    INTEGER,
                      begin       INTEGER NOT NULL DEFAULT 0,
                      end         INTEGER NOT NULL DEFAULT 0,
-                     require_pin TEXT NOT NULL DEFAULT "true",
-                     CHECK(require_pin IN ("true","false"))
+                     require_pin TEXT NOT NULL DEFAULT "true" CHECK(require_pin IN ("true","false"))
                  )'
             );
             
